@@ -54,12 +54,21 @@ function Letter({ geometry, material, position, index, vec = new THREE.Vector3()
   useFrame((state, delta) => {
     delta = Math.min(0.1, delta)
     if (!api.current) return
+
     console.log(api.current.translation())
     api.current?.applyImpulse(vec.copy({
       x: position[0] - api.current.translation().x,
       y: position[1] - api.current.translation().y,
       z: position[2] - api.current.translation().z
-    }).multiplyScalar(4.2))
+    }).multiplyScalar(40))
+    console.log(api.current)
+    // alos back to original rotation
+    api.current?.applyTorqueImpulse(vec.copy({
+      x: 0 - api.current.rotation().x,
+      y: 0 - api.current.rotation().y,
+      z: 0 - api.current.rotation().z
+    }).multiplyScalar(40))
+
 
   })
 
