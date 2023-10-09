@@ -53,7 +53,14 @@ function Letter({ geometry, material, position, index, vec = new THREE.Vector3()
   const api = useRef()
   useFrame((state, delta) => {
     delta = Math.min(0.1, delta)
-    api.current?.applyImpulse(vec.copy(api.current.translation()).negate().multiplyScalar(4.2))
+    if (!api.current) return
+    console.log(api.current.translation())
+    api.current?.applyImpulse(vec.copy({
+      x: position[0] - api.current.translation().x,
+      y: position[1] - api.current.translation().y,
+      z: position[2] - api.current.translation().z
+    }).multiplyScalar(4.2))
+
   })
 
   return (
@@ -101,44 +108,44 @@ export function OtisBayLogo(props) {
       name: "O",
       geometry: nodes.O.geometry,
       material: materials.materialForOTIS,
-      position: [0, 9.667, 5.469]
+      position: [-7.01, 3.769, -1.54]
     },
 
     {
       name: "T",
       geometry: nodes.T.geometry,
       material: materials.materialForOTIS,
-      position: [0, 11.662, -0.418]
+      position: [-1.122, 5.764, -1.54]
     },
     {
       name: "I",
       geometry: nodes.I.geometry,
       material: materials.materialForOTIS,
-      position: [0, 9.318, -5.093]
+      position: [3.552, 3.42, -1.54]
     },
     {
       name: "S",
       geometry: nodes.S.geometry,
       material: materials.materialForOTIS,
-      position: [0, 11.868, -9.288]
+      position: [7.747, 5.97, -1.54]
     },
     {
       name: "B",
       geometry: nodes.B.geometry,
       material: materials.materialForBAY,
-      position: [0, 2.839, 5.271]
+      position: [-6.812, -3.059, -1.54]
     },
     {
       name: "A",
       geometry: nodes.A.geometry,
       material: materials.materialForBAY,
-      position: [0, 4.148, -0.813]
+      position: [-0.728, -2.75, -1.54]
     },
     {
       name: "Y",
       geometry: nodes.Y.geometry,
       material: materials.materialForBAY,
-      position: [0, 2.37, -5.913]
+      position: [4.372, -3.529, -1.54]
     }
   ];
 

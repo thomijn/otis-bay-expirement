@@ -19,7 +19,7 @@ const CameraControls = () => {
     //   { x: -state.pointer.x * 2, y: -state.pointer.y * 2, z: 20 },
     //   0.1
     // );
-    // state.camera.lookAt(0, 0, 0);
+    state.camera.lookAt(0, 1, 0);
     // state.camera.updateProjectionMatrix();
   });
 
@@ -73,14 +73,12 @@ export default function App() {
         shadows
         dpr={[1, 1.5]}
         gl={{ antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 40}}
+        camera={{ position: [0, -1, 20], fov: 40}}
       >
         <Leva hidden />
         <Physics paused={!physicsEnabled} gravity={[0, 0, 0]}>
           <OtisBayLogo
             scale={1.1}
-            position={[-1.5, -7.5, 0]}
-            rotation={[0, -Math.PI * 0.5, 0]}
           />
           <Pointer />
         </Physics>
